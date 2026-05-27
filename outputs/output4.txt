@@ -1,4 +1,20 @@
 === STDOUT ===
+Parseo exitoso
+Codigo:
+fun void main():
+var int edad,
+edad = 17
+if edad <= 17 then 
+print (0)
+else
+edad = edad + 1
+print (1)
+endif
+return 0
+endfun
+
+Interprete:
+0
+
 
 === STDERR ===
-Error al parsear: Error sintáctico

@@ -163,6 +163,13 @@ Stmt *Parser::parsestmt() {
 
   else if (match(Token::ID)) {
     string texto = previous->text;
+    if (match(Token::PLUS)) {
+      if (match(Token::PLUS)) {
+        return new AsignStmt(
+            texto, new BinaryExp(new IdExp(texto), new NumberExp(1), PLUS_OP));
+      }
+      throw runtime_error("Error sintáctico");
+    }
     match(Token::ASSIGN);
     e = parseCNExp();
     return new AsignStmt(texto, e);

@@ -1,4 +1,27 @@
 === STDOUT ===
+Parseo exitoso
+Codigo:
+var int limiteGlobal,
+var bool ejecutar,
+fun int procesar(int base,):
+var int temp,
+temp = base * 2
+return temp
+endfun
+fun void main():
+var int i,
+limiteGlobal = 100
+ejecutar = true
+i = 1
+while i < 10 do 
+i = procesar(i,)
+i = i + 1
+endwhile
+return 0
+endfun
+
+Interprete:
+
 
 === STDERR ===
-Error al parsear: Error sintáctico
+[Advertencia] Variable no encontrada: true
