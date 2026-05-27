@@ -13,6 +13,9 @@ string Exp::binopToChar(BinaryOp op) {
         case MUL_OP:   return "*";
         case DIV_OP:   return "/";
         case POW_OP:   return "**";
+        case MENOR_OP: return "<";
+        case MENORIGUAL_OP: return "<=";
+        case IGUALIGUAL_OP: return "==";
         default:       return "?";
     }
 }
@@ -21,7 +24,7 @@ string Exp::binopToChar(BinaryOp op) {
 BinaryExp::BinaryExp(Exp* l, Exp* r, BinaryOp o)
     : left(l), right(r), op(o) {}
 
-    
+
 BinaryExp::~BinaryExp() {
     delete left;
     delete right;
@@ -82,6 +85,7 @@ VarDec::~VarDec(){
 
 WhileStmt::WhileStmt(Exp* e){
     condicion = e;
+    cuerpo = new Body;
 }
 
 WhileStmt::~WhileStmt(){

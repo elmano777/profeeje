@@ -9,7 +9,7 @@ using namespace std;
 // -----------------------------
 // Constructor
 // -----------------------------
-Scanner::Scanner(const char* s): input(s), first(0), current(0) { 
+Scanner::Scanner(const char* s): input(s), first(0), current(0) {
     }
 
 // -----------------------------
@@ -29,11 +29,11 @@ Token* Scanner::nextToken() {
     Token* token;
 
     // Saltar espacios en blanco
-    while (current < input.length() && is_white_space(input[current])) 
+    while (current < input.length() && is_white_space(input[current]))
         current++;
 
     // Fin de la entrada
-    if (current >= input.length()) 
+    if (current >= input.length())
         return new Token(Token::END);
 
     char c = input[current];
@@ -69,16 +69,25 @@ Token* Scanner::nextToken() {
         else return new Token(Token::ID, input, first, current - first);
     }
     // Operadores
-    else if (strchr(",+:/-*();=\"  ", c)) {
+    else if (strchr(",+:/-*();=\"<", c)) {
         switch (c) {
             case '\'':
             case ',': token = new Token(Token::COMA,  c); break;
             case ':': token = new Token(Token::DOSPUNTOS,  c); break;
             case ';': token = new Token(Token::SEMICOL,  c); break;
-            case '=': token = new Token(Token::ASSIGN, c); break;
+            case '=':
+            if (input[current+1]=='=')
+            {
+                current++;
+                token = new Token(Token::IGUALIGUAL, input, first, current + 1 - first);
+            }
+            else{
+                token = new Token(Token::ASSIGN, c);
+            }
+            break;
             case '+': token = new Token(Token::PLUS,  c); break;
             case '-': token = new Token(Token::MINUS, c); break;
-            case '*': 
+            case '*':
             if (input[current+1]=='*')
             {
                 current++;
@@ -86,6 +95,16 @@ Token* Scanner::nextToken() {
             }
             else{
                 token = new Token(Token::MUL,   c);
+            }
+            break;
+            case '<':
+            if (input[current+1]=='=')
+            {
+                current++;
+                token = new Token(Token::MENORIGUAL, input, first, current + 1 - first);
+            }
+            else{
+                token = new Token(Token::MENOR,   c);
             }
             break;
             case '/': token = new Token(Token::DIV,   c); break;

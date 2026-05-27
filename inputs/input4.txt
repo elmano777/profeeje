@@ -1,8 +1,11 @@
-var int x;
-x = 5; 
-if x then  
-    var int x;
-    x = 4;
-    print(x)
-endif;
-print(x)
+fun void main():
+    var int edad;
+    edad = 17;
+    if edad <= 17 then
+        print(0)
+    else
+        edad++;
+        print(1)
+    endif;
+    return 0
+endfun

@@ -1,0 +1,13 @@
+fun int factorial(int n):
+    if n == 0 then
+        return 1
+    endif;
+    return n * factorial(n - 1)
+endfun
+
+fun void main():
+    var int resultado;
+    resultado = factorial(5);
+    print(resultado);
+    return 0
+endfun

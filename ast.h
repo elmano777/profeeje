@@ -9,17 +9,19 @@
 
 using namespace std;
 
-class Visitor; 
+class Visitor;
 class Body;
 // Operadores binarios soportados
-enum BinaryOp { 
-    PLUS_OP, 
-    MINUS_OP, 
-    MUL_OP, 
+enum BinaryOp {
+    PLUS_OP,
+    MINUS_OP,
+    MUL_OP,
     DIV_OP,
-    POW_OP
+    POW_OP,
+    MENORIGUAL_OP,
+    IGUALIGUAL_OP,
+    MENOR_OP
 };
-
 // Clase abstracta Exp
 class Exp {
 public:
@@ -89,7 +91,7 @@ public:
 class WhileStmt: public Stmt{
 public:
     Exp* condicion;
-    list<Stmt*> cuerpodelwhile;
+    Body* cuerpo;
     void accept(Visitor* visitor) override;
     WhileStmt(Exp* e);
     ~WhileStmt();
@@ -148,7 +150,7 @@ public:
 };
 
 class Fundec{
-public: 
+public:
     string nombre;
     string tipo;
     vector<string> tipo_parametros;

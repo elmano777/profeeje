@@ -33,6 +33,9 @@ public:
         THEN,
         ENDIF,
         ASSIGN,
+        MENOR,
+        MENORIGUAL,
+        IGUALIGUAL,
         SQRT,    // sqrt
         NUM,     // Número
         ERR,     // Error

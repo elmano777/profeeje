@@ -1,0 +1,12 @@
+fun void main():
+    var int i;
+    i = 0;
+    while i < 10 do
+        print(i);
+        if i == 5 then
+            break
+        endif;
+        i++
+    endwhile;
+    return 0
+endfun

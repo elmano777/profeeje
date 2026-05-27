@@ -1,20 +1,18 @@
 === STDOUT ===
 Parseo exitoso
 Codigo:
-fun int sumar(int a,int b,):
-var int total,
-total = a + b
-return total
+fun int multiplicar(int x,int y,):
+return x * y
 endfun
 fun void main():
 var int res,
-res = sumar(10,20,)
+res = multiplicar(5 < 6,4 < 10,)
 print (res)
 return 0
 endfun
 
 Interprete:
-30
+1
 
 
 === STDERR ===

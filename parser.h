@@ -1,4 +1,4 @@
-#ifndef PARSER_H       
+#ifndef PARSER_H
 #define PARSER_H
 
 #include "scanner.h"    // Incluye la definición del escáner (provee tokens al parser)
@@ -13,17 +13,18 @@ private:
     bool advance();                  // Avanza al siguiente token
     bool isAtEnd();                  // Comprueba si ya se llegó al final de la entrada
 public:
-    Parser(Scanner* scanner);       
+    Parser(Scanner* scanner);
     Programa* parseProgram();             // Punto de entrada: analiza un programa completo
     Programa* parseP();
     Fundec* parsefundec();
     Body* parseBody();
     VarDec* parseVarDec();
     Stmt* parsestmt();
+    Exp* parseCNExp();
     Exp* parseCEXP();                   // Regla gramatical P
     Exp* parseE();                   // Regla gramatical E
     Exp* parseT();                   // Regla gramatical T
     Exp* parseF();                   // Regla gramatical F
 };
 
-#endif // PARSER_H      
+#endif // PARSER_H

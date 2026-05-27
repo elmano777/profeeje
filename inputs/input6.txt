@@ -1,0 +1,9 @@
+fun void main():
+    var bool flag, condicion;
+    var int valor;
+    flag = true;
+    valor = 5;
+    condicion = not (valor == 0);
+    print(condicion);
+    return 0
+endfun

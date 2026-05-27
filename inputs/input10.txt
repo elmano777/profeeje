@@ -1,0 +1,26 @@
+var int temperaturaMaxima, alarmaActiva;
+
+fun bool evaluarSensor(int lectura):
+    var bool sobrecalentado;
+    sobrecalentado = temperaturaMaxima < lectura;
+    if sobrecalentado and not alarmaActiva then
+        alarmaActiva = true;
+        print(1)
+    else
+        print(0)
+    endif;
+    return sobrecalentado
+endfun
+
+fun void main():
+    var int i;
+    var bool resultado;
+    temperaturaMaxima = 38;
+    alarmaActiva = false;
+    i = 35;
+    while i <= 40 do
+        resultado = evaluarSensor(i);
+        i++
+    endwhile;
+    return 0
+endfun

@@ -7,13 +7,13 @@ using namespace std;
 // Constructores
 // -----------------------------
 
-Token::Token(Type type) 
+Token::Token(Type type)
     : type(type), text("") { }
 
-Token::Token(Type type, char c) 
+Token::Token(Type type, char c)
     : type(type), text(string(1, c)) { }
 
-Token::Token(Type type, const string& source, int first, int last) 
+Token::Token(Type type, const string& source, int first, int last)
     : type(type), text(source.substr(first, last)) { }
 
 // -----------------------------
@@ -46,7 +46,9 @@ ostream& operator<<(ostream& outs, const Token& tok) {
         case Token::VAR:    outs << "TOKEN(VAR, \""    << tok.text << "\")"; break;
         case Token::COMA:    outs << "TOKEN(COMA, \""    << tok.text << "\")"; break;
         case Token::ENDWHILE:    outs << "TOKEN(ENDWHILE, \""    << tok.text << "\")"; break;
- 
+        case Token::MENOR:    outs << "TOKEN(MENOR, \""    << tok.text << "\")"; break;
+        case Token::MENORIGUAL:    outs << "TOKEN(MENORIGUAL, \""    << tok.text << "\")"; break;
+        case Token::IGUALIGUAL:    outs << "TOKEN(IGUALIGUAL, \""    << tok.text << "\")"; break;
         case Token::FUN:    outs << "TOKEN(FUN, \""    << tok.text << "\")"; break;
         case Token::ENDFUN:    outs << "TOKEN(ENDFUN, \""    << tok.text << "\")"; break;
         case Token::DOSPUNTOS:    outs << "TOKEN(DOSPUNTOS, \""    << tok.text << "\")"; break;

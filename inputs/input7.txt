@@ -1,0 +1,10 @@
+fun int multiplicar(int x, int y):
+    return x * y
+endfun
+
+fun void main():
+    var int res;
+    res = multiplicar(5<6, 4<10);
+    print(res);
+    return 0
+endfun
