@@ -1,0 +1,13 @@
+var int a,b,c;
+var float w;
+
+fun int sumita(int x,int y):
+    return x+y
+endfun
+
+fun void main():
+    var int x;
+    print(5);
+    x = sumita(4+1,5);
+    print(x)
+endfun

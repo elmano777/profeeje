@@ -1,0 +1,8 @@
+var int x;
+x = 5; 
+if x then  
+    var int x;
+    x = 4;
+    print(x)
+endif;
+print(x)
