@@ -32,10 +32,14 @@ public:
         ENDWHILE,
         THEN,
         ENDIF,
+        BREAK,
         ASSIGN,
         MENOR,
         MENORIGUAL,
         IGUALIGUAL,
+        AND,
+        OR,
+        NOT,
         SQRT,    // sqrt
         NUM,     // Número
         ERR,     // Error

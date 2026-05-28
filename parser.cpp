@@ -107,7 +107,7 @@ Body *Parser::parseBody() {
   }
   while (!isAtEnd() &&
          (check(Token::PRINT) || check(Token::RETURN) || check(Token::IF) ||
-          check(Token::WHILE) || check(Token::ID))) {
+          check(Token::WHILE) || check(Token::BREAK) || check(Token::ID))) {
     b->slist.push_back(parsestmt());
     if (match(Token::SEMICOL)) {
     }
@@ -161,6 +161,10 @@ Stmt *Parser::parsestmt() {
     return roberto;
   }
 
+  else if (match(Token::BREAK)) {
+    return new BreakStmt();
+  }
+
   else if (match(Token::ID)) {
     string texto = previous->text;
     if (match(Token::PLUS)) {
@@ -179,6 +183,28 @@ Stmt *Parser::parsestmt() {
 }
 
 Exp *Parser::parseCNExp() {
+  return parseOrExp();
+}
+
+Exp *Parser::parseOrExp() {
+  Exp *l = parseAndExp();
+  while (match(Token::OR)) {
+    Exp *r = parseAndExp();
+    l = new BinaryExp(l, r, OR_OP);
+  }
+  return l;
+}
+
+Exp *Parser::parseAndExp() {
+  Exp *l = parseCompExp();
+  while (match(Token::AND)) {
+    Exp *r = parseCompExp();
+    l = new BinaryExp(l, r, AND_OP);
+  }
+  return l;
+}
+
+Exp *Parser::parseCompExp() {
   Exp *l = parseCEXP();
   while (match(Token::MENOR) || match(Token::MENORIGUAL) ||
          match(Token::IGUALIGUAL)) {
@@ -238,6 +264,10 @@ Exp *Parser::parseT() {
 
 Exp *Parser::parseF() {
   Exp *e;
+  if (match(Token::NOT)) {
+    // Representamos not x como (x == 0)
+    return new BinaryExp(parseF(), new NumberExp(0), IGUALIGUAL_OP);
+  }
   if (match(Token::NUM)) {
     return new NumberExp(stoi(previous->text));
   } else if (match(Token::ID)) {

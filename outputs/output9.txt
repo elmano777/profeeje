@@ -11,17 +11,18 @@ endfun
 fun void main():
 var int i,
 limiteGlobal = 100
-ejecutar = true
+ejecutar = 1
 i = 1
 while i < 10 do 
 i = procesar(i,)
 i = i + 1
 endwhile
+print (i)
 return 0
 endfun
 
 Interprete:
+15
 
 
 === STDERR ===
-[Advertencia] Variable no encontrada: true

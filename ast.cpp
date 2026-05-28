@@ -16,6 +16,8 @@ string Exp::binopToChar(BinaryOp op) {
         case MENOR_OP: return "<";
         case MENORIGUAL_OP: return "<=";
         case IGUALIGUAL_OP: return "==";
+        case AND_OP: return "and";
+        case OR_OP: return "or";
         default:       return "?";
     }
 }
@@ -89,6 +91,12 @@ WhileStmt::WhileStmt(Exp* e){
 }
 
 WhileStmt::~WhileStmt(){
+}
+
+BreakStmt::BreakStmt() {
+}
+
+BreakStmt::~BreakStmt() {
 }
 
 

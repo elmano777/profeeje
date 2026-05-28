@@ -15,5 +15,7 @@ return 0
 endfun
 
 Interprete:
+120
+
 
 === STDERR ===

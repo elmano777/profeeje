@@ -23,6 +23,8 @@ void IfStmt::accept(Visitor *visitor) { visitor->visit(this); }
 
 void WhileStmt::accept(Visitor *visitor) { visitor->visit(this); }
 
+void BreakStmt::accept(Visitor *visitor) { visitor->visit(this); }
+
 void VarDec::accept(Visitor *visitor) { visitor->visit(this); }
 
 void Body::accept(Visitor *visitor) { visitor->visit(this); }
@@ -102,6 +104,12 @@ int EVALVisitor::visit(BinaryExp *exp) {
     case IGUALIGUAL_OP:
       result = (v1 == v2) ? 1 : 0;
       break;
+    case AND_OP:
+      result = (v1 != 0 && v2 != 0) ? 1 : 0;
+      break;
+    case OR_OP:
+      result = (v1 != 0 || v2 != 0) ? 1 : 0;
+      break;
     default:
       cout << "Operador desconocido" << endl;
       result = 0;
@@ -180,11 +188,23 @@ void PrintVisitor::visit(WhileStmt *stm) {
   cout << "endwhile" << endl;
 }
 
+void PrintVisitor::visit(BreakStmt *stm) { cout << "break" << endl; }
+
 void EVALVisitor::visit(WhileStmt *stm) {
   while (stm->condicion->accept(this) != 0) {
+    breakSignal = false;
     stm->cuerpo->accept(this);
+    if (returnSignal) {
+      break;
+    }
+    if (breakSignal) {
+      breakSignal = false;
+      break;
+    }
   }
 }
+
+void EVALVisitor::visit(BreakStmt *stm) { breakSignal = true; }
 
 void PrintVisitor::visit(VarDec *decl) {
   cout << "var " << decl->tipo << " ";
@@ -207,6 +227,9 @@ void EVALVisitor::visit(Body *p) {
   }
   for (auto i : p->slist) {
     i->accept(this);
+    if (breakSignal || returnSignal) {
+      break;
+    }
   }
   memoria.remove_level();
 }
@@ -268,6 +291,12 @@ void EVALVisitor::visit(Programa *p) {
 void EVALVisitor::visit(Fundec *fd) { fd->cuerpo->accept(this); }
 
 int EVALVisitor::visit(FcallExp *exp) {
+  int retornoPrevio = retornito;
+  bool returnPrevio = returnSignal;
+
+  retornito = 0;
+  returnSignal = false;
+
   memoria.add_level();
   Fundec *f = fmemoria[exp->nombre];
   for (int i = 0; i < f->id_parametros.size(); i++) {
@@ -275,7 +304,14 @@ int EVALVisitor::visit(FcallExp *exp) {
   }
   f->cuerpo->accept(this);
   memoria.remove_level();
-  return retornito;
+
+  int resultado = retornito;
+  retornito = retornoPrevio;
+  returnSignal = returnPrevio;
+  return resultado;
 }
 
-void EVALVisitor::visit(ReturnStm *stm) { retornito = stm->exp->accept(this); }
+void EVALVisitor::visit(ReturnStm *stm) {
+  retornito = stm->exp->accept(this);
+  returnSignal = true;
+}

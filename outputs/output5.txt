@@ -1,4 +1,26 @@
 === STDOUT ===
+Parseo exitoso
+Codigo:
+fun void main():
+var int i,
+i = 0
+while i < 10 do 
+print (i)
+if i == 5 then 
+break
+endif
+i = i + 1
+endwhile
+return 0
+endfun
+
+Interprete:
+0
+1
+2
+3
+4
+5
+
 
 === STDERR ===
-Error al parsear: Error sintáctico

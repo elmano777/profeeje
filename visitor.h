@@ -19,6 +19,7 @@ public:
     virtual void visit(PrintStmt* stm) = 0;
     virtual void visit(IfStmt* stm) = 0;
     virtual void visit(WhileStmt* stm) = 0; 
+    virtual void visit(BreakStmt* stm) = 0;
     virtual void visit(VarDec* stm) = 0; 
     virtual void visit(Body* stm) = 0; 
     virtual void visit(ReturnStm* stm) = 0;
@@ -39,6 +40,7 @@ public:
     int visit(IdExp* exp) override;
     void visit(IfStmt* stm) override; 
     void visit(WhileStmt* stm) override;
+    void visit(BreakStmt* stm) override;
     void visit(VarDec* stm) override; 
     void visit(ReturnStm* stm) ;
     void visit(Fundec* fd) ;
@@ -51,6 +53,8 @@ class EVALVisitor : public Visitor {
 public:
     Environment<int> memoria;
     int retornito;
+    bool breakSignal = false;
+    bool returnSignal = false;
     unordered_map<string,Fundec*> fmemoria;
     int visit(BinaryExp* exp) override;
     int visit(NumberExp* exp) override;
@@ -60,6 +64,7 @@ public:
     int visit(IdExp* exp) override;
     void visit(IfStmt* stm) override; 
     void visit(WhileStmt* stm) override; 
+    void visit(BreakStmt* stm) override;
     void visit(Programa* program) override;
     void visit(VarDec* stm) override;  
     void visit(ReturnStm* stm) ;

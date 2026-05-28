@@ -20,7 +20,9 @@ enum BinaryOp {
     POW_OP,
     MENORIGUAL_OP,
     IGUALIGUAL_OP,
-    MENOR_OP
+    MENOR_OP,
+    AND_OP,
+    OR_OP
 };
 // Clase abstracta Exp
 class Exp {
@@ -95,6 +97,13 @@ public:
     void accept(Visitor* visitor) override;
     WhileStmt(Exp* e);
     ~WhileStmt();
+};
+
+class BreakStmt : public Stmt {
+public:
+    void accept(Visitor* visitor) override;
+    BreakStmt();
+    ~BreakStmt();
 };
 
 

@@ -1,4 +1,38 @@
 === STDOUT ===
+Parseo exitoso
+Codigo:
+var int temperaturaMaxima,alarmaActiva,
+fun bool evaluarSensor(int lectura,):
+var bool sobrecalentado,
+sobrecalentado = temperaturaMaxima < lectura
+if sobrecalentado and alarmaActiva == 0 then 
+alarmaActiva = 1
+print (1)
+else
+print (0)
+endif
+return sobrecalentado
+endfun
+fun void main():
+var int i,
+var bool resultado,
+temperaturaMaxima = 38
+alarmaActiva = 0
+i = 35
+while i <= 40 do 
+resultado = evaluarSensor(i,)
+i = i + 1
+endwhile
+return 0
+endfun
+
+Interprete:
+0
+0
+0
+0
+1
+0
+
 
 === STDERR ===
-Error al parsear: Error sintáctico

@@ -4,14 +4,15 @@ Codigo:
 fun void main():
 var bool flag,condicion,
 var int valor,
-flag = true
+flag = 1
 valor = 5
-condicion = not(valor == 0,)
+condicion = valor == 0 == 0
 print (condicion)
 return 0
 endfun
 
 Interprete:
+1
+
 
 === STDERR ===
-[Advertencia] Variable no encontrada: true

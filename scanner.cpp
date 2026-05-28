@@ -65,6 +65,12 @@ Token* Scanner::nextToken() {
         if (lexema=="do") return new Token(Token::DO, input, first, current - first);
         if (lexema=="while") return new Token(Token::WHILE, input, first, current - first);
         if (lexema=="endwhile") return new Token(Token::ENDWHILE, input, first, current - first);
+        if (lexema=="break") return new Token(Token::BREAK, input, first, current - first);
+        if (lexema=="and") return new Token(Token::AND, input, first, current - first);
+        if (lexema=="or") return new Token(Token::OR, input, first, current - first);
+        if (lexema=="not") return new Token(Token::NOT, input, first, current - first);
+        if (lexema=="true") return new Token(Token::NUM, '1');
+        if (lexema=="false") return new Token(Token::NUM, '0');
         if (lexema=="var") return new Token(Token::VAR, input, first, current - first);
         else return new Token(Token::ID, input, first, current - first);
     }

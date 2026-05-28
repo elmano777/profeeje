@@ -39,6 +39,7 @@ ostream& operator<<(ostream& outs, const Token& tok) {
         case Token::ASSIGN:    outs << "TOKEN(ASSIGN, \""    << tok.text << "\")"; break;
         case Token::IF:    outs << "TOKEN(IF, \""    << tok.text << "\")"; break;
         case Token::ENDIF:    outs << "TOKEN(ENDIF, \""    << tok.text << "\")"; break;
+        case Token::BREAK:    outs << "TOKEN(BREAK, \""    << tok.text << "\")"; break;
         case Token::ELSE:    outs << "TOKEN(ELSE, \""    << tok.text << "\")"; break;
         case Token::THEN:    outs << "TOKEN(THEN, \""    << tok.text << "\")"; break;
         case Token::WHILE:    outs << "TOKEN(WHILE, \""    << tok.text << "\")"; break;
@@ -49,6 +50,9 @@ ostream& operator<<(ostream& outs, const Token& tok) {
         case Token::MENOR:    outs << "TOKEN(MENOR, \""    << tok.text << "\")"; break;
         case Token::MENORIGUAL:    outs << "TOKEN(MENORIGUAL, \""    << tok.text << "\")"; break;
         case Token::IGUALIGUAL:    outs << "TOKEN(IGUALIGUAL, \""    << tok.text << "\")"; break;
+        case Token::AND:    outs << "TOKEN(AND, \""    << tok.text << "\")"; break;
+        case Token::OR:    outs << "TOKEN(OR, \""    << tok.text << "\")"; break;
+        case Token::NOT:    outs << "TOKEN(NOT, \""    << tok.text << "\")"; break;
         case Token::FUN:    outs << "TOKEN(FUN, \""    << tok.text << "\")"; break;
         case Token::ENDFUN:    outs << "TOKEN(ENDFUN, \""    << tok.text << "\")"; break;
         case Token::DOSPUNTOS:    outs << "TOKEN(DOSPUNTOS, \""    << tok.text << "\")"; break;
