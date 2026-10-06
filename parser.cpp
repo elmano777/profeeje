@@ -265,7 +265,6 @@ Exp *Parser::parseT() {
 Exp *Parser::parseF() {
   Exp *e;
   if (match(Token::NOT)) {
-    // Representamos not x como (x == 0)
     return new BinaryExp(parseF(), new NumberExp(0), IGUALIGUAL_OP);
   }
   if (match(Token::NUM)) {
